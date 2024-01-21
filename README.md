@@ -1,7 +1,7 @@
 
 
-# asg2
-
+# elementary-homework
+Web app for homework assignment used in after school facilities
 
 
 ## Usage
@@ -9,7 +9,7 @@
 
 
 ## Developing
-
+Use MongoDB for storage
 
 
 ### Tools
