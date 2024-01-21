@@ -1,0 +1,17 @@
+<div class="modal-header">
+  <h3>{{type}} Upload (It will take sometime before it shows on server)</h3>
+</div>
+<div role="alert" ng-show="formError" class="alert alert-danger">{{formError}}</div>
+<div class="modal-body" id="modal-body">
+  <h3>{{record.grade}} Grade {{record.subject}} Chapter {{record.chapter}} Lesson {{record.lesson}}</h3>
+  <h3 class="title" >Choose PDF(.pdf) file</h3>
+  <div class="form-group">
+	<input type="file" class="form-control" custom-change="record.file"/>
+  </div>
+</div>
+	
+<div class="modal-footer">
+  <button class="btn btn-success" type="button" ng-click="upload()">Upload</button>
+  <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+  <p ng-show="showProgress">Upload Status: {{progressBar}}%</p>
+</div>

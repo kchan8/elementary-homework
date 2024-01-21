@@ -1,0 +1,298 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  -webkit-border-radius: 0 6px 6px 6px;
+  -moz-border-radius: 0 6px 6px;
+  border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #ccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+
+.dropdown-submenu:hover>a:after {
+  border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+  float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  -webkit-border-radius: 6px 0 6px 6px;
+  -moz-border-radius: 6px 0 6px 6px;
+  border-radius: 6px 0 6px 6px;
+}
+
+a {
+  color: #00B7FF;
+}
+
+th{
+	border: 1px solid grey;
+	padding: 6px 6px 6px 6px;
+}
+
+td {
+	border: 1px solid grey;
+	padding: 1px 6px 3px 6px;
+}
+
+.patrol-tag {
+	font-weight: bold;
+	position: relative;
+	top:-1px;
+	font-size: 24px;
+}
+.name-tag {
+	position: relative;
+	top:-1px;
+}
+
+form .ng-invalid .ng-dirty {
+	background-color: lightpink;
+}
+form .ng-valid .ng-dirty {
+	background-color: lightgreen;
+}
+div .error {
+	color: red;
+	font-weight: bold;
+}
+
+.driverSelect {
+	-webkit-appearance: menulist-button;
+	border-radius: 10px;
+	height: 22px;
+	margin-top: 2px;
+}
+
+.teacherSelect {
+	
+	margin-top: 2px;
+}
+
+select {
+	padding: 2px;
+	overflow-y: auto;
+}
+.Grade-8th {
+	background-color: #a50026;
+}
+.Grade-7th {
+	background-color: #d3322b;
+}
+.Grade-6th {
+	background-color: #f16d49;
+}
+.Grade-5th {
+	background-color: #fcab64;
+}
+.Grade-4th {
+	background-color: #fedc90;
+}
+.Grade-3rd {
+	background-color: #faf8c0;
+}
+.Grade-2nd {
+	background-color: #dcf1ec;
+}
+.Grade-1st {
+	background-color: #abd6e8;
+}
+.Grade-K {
+	background-color: #76abd0;
+}
+.Grade-TK {
+	background-color: #4a74b4;
+}
+
+.Dublin {
+	color: #29A13D;
+}
+.Pleasanton {
+	color: #ff0000;
+}
+.Livermore {
+	color: #0000ff;
+}
+.San-Ramon {
+	color: #bb33ff;
+}
+
+textarea {
+	height: 100%;
+}
+
+.grades > input[type="radio"]{
+  margin: 0 0 0 10px;
+}
+
+.wrapper-left {
+  position: absolute;
+  border-style: solid;
+  left: 2px;
+  top: 52px;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.wrapper-right {
+  position: absolute;
+  border-style: solid;
+  left: 85px;
+  top: 52px;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.drawing {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+
+.drawing-pass {
+  pointer-events: none;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+
+.fixed-left {
+	position: fixed;
+	margin-top: 53px;
+	left: 2px;
+	width: 86px;
+}
+.fixed-right {
+	position: fixed;
+	margin-top: 53px;
+	right: -3px;
+	width: 86px;
+}
+
+.custom-btn {
+  width: 80px;
+  text-align: center;
+  margin: 0 auto;
+  padding-top: 8;
+  padding-right: 0;
+  padding-bottom: 8;
+  padding-left: 0;
+}
+
+.nameTagRight {
+	position: absolute;
+	left: 4px;
+}
+.nameTagLeft {
+	position: absolute;
+	left: 85px;
+}
+
+.white-background {
+  background-color:#ffffff;
+}
+.red-background {
+  background-color:#ff0000;
+}
+.blue-background {
+  background-color:#0000ff;
+}
+.green-background {
+  background-color:#00ff00;
+}
+.black-background {
+  background-color:#000000;
+}
+.white {
+  color:#ffffff;
+}
+.red {
+  color:#ff0000;
+}
+.blue {
+  color:#0000ff;
+}
+.black {
+  color:#000000;
+}
+.draw-button-active {
+	color:#ffffff;
+	background-color:#0000ff;
+}
+.draw-button-inactive {
+	color:#0000ff;
+	background-color:#ffffff;
+}
+.erase-button-active {
+	color:#ffffff;
+	background-color:#0000ff;
+}
+.erase-button-inactive {
+	color:#0000ff;
+	background-color:#ffffff;
+}
+.red-button-active {
+	color:#ffffff;
+	background-color:#ff0000;
+}
+.red-button-inactive {
+	color:#ff0000;
+	background-color:#ffffff;
+}
+.green-button-active {
+	color:#000000;
+	background-color:#008000;
+}
+.green-button-inactive {
+	color:#00ff00;
+	background-color:#ffffff;
+}
+.black-button-active {
+	color:#ffffff;
+	background-color:#000000;
+}
+.black-button-inactive {
+	color:#000000;
+	background-color:#ffffff;
+}
+
+.btn:focus {
+	outline: none;
+	box-shadow: none;
+}
+
+navigation + .container {
+	margin-top: 60px;
+}

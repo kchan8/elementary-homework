@@ -1,0 +1,36 @@
+<navigation client="vm.client"></navigation>
+<div class="container">
+  <h1>Homework Upload</h1>
+  <p ng-if="workbooks.length == 0">No homework for review!!</p>
+  <table ng-if="workbooks.length > 0">
+  <tr>
+  <th>Grade</th>
+  <th>Subject</th>
+  <th>Chapter</th>
+  <th>Lesson</th>
+  <th>Description</th>
+  <th>Pages</th>
+  <th>Due By</th>
+  <th>Expire</th>
+  <th>Select Student</th>
+  <th>Upload</th>
+  </tr>
+  <tr ng-repeat="workbook in workbooks">
+  <td>{{workbook.grade}}</td>
+  <td>{{workbook.subject}}</td>
+  <td>{{workbook.chapter}}</td>
+  <td>{{workbook.lesson}}</td>
+  <td>{{workbook.description}}</td>
+  <td>{{workbook.pages}}</td>
+  <td>{{workbook.due | date:'M/d/yy' }}</td>
+  <td>{{workbook.expire | date:'M/d/yy' }}</td>
+  <td><select ng-model="workbook.studentID">
+     <option ng-repeat="student in (grades | filter:{'_id': workbook.grade})[0].users" value="{{student.id}}">{{student.name}}</option>
+  </select></td>
+  <td><button type="button" class="btn btn-xs btn-primary" 
+    ng-click="uploadHomework(workbook)">Upload</button></td>
+  </tr>
+  </table>
+  </div>
+  <footer-generic></footer-generic>
+</div>

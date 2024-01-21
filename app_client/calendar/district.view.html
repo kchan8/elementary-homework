@@ -1,0 +1,27 @@
+<navigation client="vm.client"></navigation>
+<div class="container">
+  <h1>{{vm.header.title}}</h1>
+  <div ng-repeat="district in vm.districts">
+    <h1>{{district._id}}</h1>
+    <table>
+      <tr>
+      <th>Minimum Dates</th>
+      <td width="700px"><input class="form-control" type="text"
+        ng-model="vm.getDates('MINDAY', district._id).datesStr"></td>
+      </tr>
+      <tr>
+      <th>No School Dates</th>
+      <td><input class="form-control" type="text"
+        ng-model="vm.getDates('NOSCHOOL', district._id).datesStr"></td)>
+      </tr>
+      <tr>
+      <th>Close Dates</th>
+      <td><input class="form-control" type="text"
+        ng-model="vm.getDates('CLOSE', district._id).datesStr"></td)>
+      </tr>
+    </table>
+  </div>
+  <br/>
+  <button type="submit" class="btn" ng-click="vm.check()">Save</button>
+  <footer-generic></footer-generic>
+</div>

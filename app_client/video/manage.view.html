@@ -1,0 +1,31 @@
+<navigation client="vm.client"></navigation>
+<div class="container">
+  <h1>Video Manager</h1>
+  <uib-accordion close-others="oneAtATime" >
+    <div uib-accordion-group class="panel-default" ng-repeat="grade in grades" heading="{{grade._id}}-Grade">
+      <div ng-repeat="grade in grades | filter: {_id:grade._id}">
+        <table>
+  		<tr>
+  			<th>Subject</th>
+  			<th>Chapter</th>
+  			<th>Lesson</th>
+  			<th>Description</th>
+  			<th>Expire</th>
+  			<th>Update</th>
+  			<th><button class="btn btn-xs btn-primary" ng-click="removeVideo()">Remove</button></th>
+  		</tr>
+  		<tr ng-repeat="video in grade.videos">
+  			<td>{{video.subject}}</td>
+  			<td>{{video.chapter}}</td>
+  			<td>{{video.lesson}}</td>
+  			<td>{{video.description}}</td>
+  			<td>{{video.expire | date:'M/d/yy' }}</td>
+  			<td><button type="button" class="btn btn-xs btn-primary" ng-click="updateVideo(video._id)">Update</button></td>
+  			<td><input type="checkbox" ng-model="video.select" /></td>
+  		</tr>
+  		</table>
+      </div>
+    </div>
+  </uib-accordion>
+  <footer-generic></footer-generic>
+</div>

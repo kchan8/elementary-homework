@@ -1,0 +1,97 @@
+<navigation client="vm.client"></navigation>
+<div class="container">
+  <div class="form-group row">
+  
+  <div class="form-inline col-xs-9 col-sm-4 col-md-3 col-lg-2">
+    <div class="col-xs-2 col-sm-3 col-md-3 col-lg-3">
+      <label class="col-form-label" style="text-align:left; margin:10px 0 0 -18px; padding-left:0px">From:</label>
+    </div>
+    <div class="input-group col-xs-6 col-sm-9 col-md-8 col-lg-9">  
+      <input type="text" class="form-control" ng-model="startDate" 
+    	uib-datepicker-popup="{{format}}" ng-change="startDateUpdated()"
+        is-open="popup1.opened"/>
+      <span class="input-group-btn">          
+        <button type="button" class="btn btn-default" ng-click="open1()">
+            <i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+    </div>
+  </div>
+  
+  <div class="form-inline col-xs-9 col-sm-4 col-md-3 col-lg-2">
+    <div class="col-xs-2 col-sm-3 col-md-3 col-lg-3">
+      <label class="col-form-label" style="text-align:left; margin:10px 0 0 0; padding-left:0px">To:</label>
+    </div>
+    <div class="input-group col-xs-6 col-sm-9 col-md-8 col-lg-9">
+      <input type="text" class="form-control" ng-model="endDate" 
+        uib-datepicker-popup="{{format}}" ng-change="endDateUpdated()"
+        is-open="popup2.opened"/>
+      <span class="input-group-btn">          
+        <button type="button" class="btn btn-default" ng-click="open2()">
+            <i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+    </div>
+  </div>
+
+  <div ng-if="isAdmin()" class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
+    <label class="col-form-label" style="text-align:left; margin:10px 0 0 0; padding-left:0px">Get schedule:</label> 
+    <button type="submit" class="btn btn-primary" ng-click="copyFromWeek(1)">Last Week</button>
+    <button type="submit" class="btn btn-primary" ng-click="copyFromWeek(2)">2 Weeks Before</button>
+    <button type="submit" class="btn btn-primary" ng-click="copyFromWeek(3)">3 Weeks Before</button>
+    <div style="float:right">    
+      <button type="submit" class="btn btn-info" ng-click="drivers()" ng-disabled="disableSave">Report</button>
+      <button type="submit" class="btn btn-info" ng-click="update()" ng-disabled="disableSave">Save</button>
+	  <button type="submit" class="btn btn-warning" ng-click="htmlPDF()" ng-disabled="disablePDF">PDF</button>
+    </div>
+  </div>
+  
+  </div>
+  <div id="dpickups">
+  <table id="pickups">
+  <tr>
+    <th>#</th>
+    <th>Name</th>
+    <th style="text-align: center">gr</th>
+    <!-- <th style="text-align: center">Gender</th> -->
+    <th>School</th>
+    <!-- <th>City</th> -->
+    <th ng-repeat="day in displayDays">
+      <a href="#" title="Bell Schedule" ng-click="changeSchedule(day.date)">{{day.weekday}} - {{day.date | date:'M/d'}}</a>
+       ({{day.count}})<a href="#" ng-click="remove(day.date)">
+       <img style="float:right" src="delete.png" title="Remove Pickups">
+       </a></th>
+  </tr>
+  <tr>
+    <td colspan="4" valign="top">
+      <textarea type="text" rows="{{noteWeek}}" cols="30" style="border:none; color:red" ng-model="weekNote" ng-keyup="autoExpandWeekNote()"></textarea>
+    </td>
+    <td ng-repeat="day in displayDays" valign="top">
+      <textarea type="text" rows="{{noteRow[day.index]}}" style="border:none; color:red" ng-model="dayNote[day.index]" ng-keyup="autoExpand(day.index)"></textarea>
+    </td>
+  </tr>
+  <tr ng-repeat="student in students">
+    <td>{{$index + 1}}</td>
+  	<td>{{student.name.firstName}}</td>
+  	<td class="Grade-{{student.grade}}" style="text-align: center">{{student.grade}}</td>
+  	<!-- <td style="text-align: center">{{student.gender | limitTo: 1}}</td> -->
+    <td class="{{getSchoolDistrict(student.schoolCity)}}"><b>{{student.school}}</b></td>
+    <!-- <td><b>{{student.schoolCity}}</b></td> -->
+    <td ng-repeat="day in displayDays">
+      <input type="text" size="8" style="text-align:right; height:22px; margin-top:1px; padding-top:4px" ng-model="student.pickup[day.index].pickup" />
+      <select class="driverSelect" style="background-color:{{ getColor(student.pickup[day.index].driver) }}"
+        ng-model="student.pickup[day.index].driver">
+        <option ng-repeat="driver in vm.drivers" style="background-color:{{driver.color}}">{{driver.name}}</option>
+     <!--  	ng-options="driver for driver in vm.drivers" class="student.pickup[day.index].driver"> --> 
+      </select>
+    </td>
+  </tr>
+  </table>
+  </div>
+  <br/>
+  <div ng-if="isAdmin()" style="float:right">    
+    <button type="submit" class="btn btn-info" ng-click="drivers()" ng-disabled="disableSave">Report</button>
+    <button type="submit" class="btn btn-info" ng-click="update()" ng-disabled="disableSave">Save</button>
+    <button type="submit" class="btn btn-warning" ng-click="htmlPDF()" ng-disabled="disablePDF">PDF</button>
+  </div>
+  
+  <footer-generic></footer-generic>
+</div>

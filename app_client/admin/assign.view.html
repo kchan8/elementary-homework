@@ -1,0 +1,33 @@
+<navigation client="vm.client"></navigation>
+<div class="container">
+  <h3>Assign Students to Teachers</h3>
+  <uib-accordion close-others="oneAtATime" >
+    <div uib-accordion-group class="panel-default" ng-repeat="grade in vm.grades" heading="{{grade._id}}-Grade [{{grade.count}}]">
+      <div ng-repeat="grade in vm.grades | filter: {_id:grade._id}">
+      <table>
+        <th>Name</th>
+        <th>Teacher</th>
+        
+        <tr ng-repeat="user in grade.users">
+          <td class="Grade-{{grade._id}}">{{user.name}}</td>
+          <td width="70%"><div>
+			<select multiple 
+        	ng-model="user.teacher"
+        	ng-change="change(user)">
+        	  <option ng-repeat="teacher in vm.teachers" value="{{teacher.id}}">{{teacher.name}}</option>
+      		</select>
+          </div>
+          </td>
+        </tr>
+      </table>
+      </div>
+    </div>
+  </uib-accordion>
+  
+  <br/>
+  <div style="float:right">
+    <button type="submit" class="btn btn-info" ng-click="update()">Save</button>
+  </div>
+  
+  <footer-generic></footer-generic>
+</div>

@@ -1,0 +1,56 @@
+<navigation client="vm.client"></navigation>
+<div class="container">
+
+<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 well">
+<form name="regForm" novalidate ng-submit="vm.onSubmit()">
+  
+  <div role="alert" ng-show="vm.formError" class="alert alert-danger">{{vm.formError}}</div>
+	
+  <div class="form-group">
+    <input type="text" required name="firstname" class="form-control" placeholder="First name"
+    ng-model="vm.credentials.firstname" >
+    <span class="error" ng-show="regForm.firstname.$dirty && regForm.firstname.$error.required">
+      Please enter your first name
+    </span>
+  </div>
+  <div class="form-group">
+    <input type="text" required name="lastname" class="form-control" placeholder="Last name"
+    ng-model="vm.credentials.lastname" >
+    <span class="error" ng-show="regForm.lastname.$dirty && regForm.lastname.$error.required">
+      Please enter your last name
+    </span>
+  </div>
+  <div class="form-group">
+    <input type="email" required name="email" class="form-control" placeholder="Email"
+    ng-model="vm.credentials.email" >
+    <span class="error" ng-show="regForm.email.$dirty && regForm.email.$error.required">
+      Please enter your email address
+    </span>
+  </div>
+  <div class="form-group">
+    <input type="text" required name="username" class="form-control" placeholder="Username"
+    ng-model="vm.credentials.username" >
+    <span class="error" ng-show="regForm.username.$dirty && regForm.username.$error.required">
+      Please enter username
+    </span>
+  </div>
+  <div class="form-group">
+    <input type="password" required name="password" class="form-control" placeholder="Password"
+    ng-model="vm.credentials.password" >
+    <span class="error" ng-show="regForm.password.$dirty && regForm.password.$error.required">
+      Please enter password
+    </span>
+  </div>
+  <div class="form-group">
+    <input type="password" required name="confirm_password" class="form-control" placeholder="Confirm Password"
+     ng-model="vm.credentials.confirm_password" >
+  </div>
+ 
+  <button type="submit" value="Sign up" class="btn btn-primary btn-block" >Sign Up</button>
+
+  <p class="title">Already have an account?&nbsp;<a href="/#!{{vm.client | lowercase}}/login"><span class="title"><u>Login</u></span></p>
+</form>
+</div>
+
+<footer-generic></footer-generic>
+</div>

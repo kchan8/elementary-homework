@@ -1,0 +1,78 @@
+<navigation client="vm.client"></navigation>
+<div class="container">
+  <h1>Files Export</h1>
+  <div class="form-group row">
+  <div class="form-inline col-xs-6 col-sm-6 col-md-4 col-lg-3">
+	<button class="btn btn-primary" ng-click="exportStudents()">Download Student Records</button>
+  </div>
+  <div class="form-inline col-xs-6 col-sm-6 col-md-4 col-lg-4">
+    <div class="col-xs-2 col-sm-3 col-md-2 col-lg-2">
+      <label class="col-form-label" style="text-align:right; margin:10px 0 0 0; padding-left:0px">On:</label>
+    </div>
+    <div class="input-group col-xs-9 col-sm-9 col-md-8 col-lg-6">  
+      <input type="text" class="form-control" ng-model="date" 
+    	uib-datepicker-popup="{{format}}" ng-change="dateUpdated()"
+        is-open="popup.opened"/>
+      <span class="input-group-btn">          
+        <button type="button" class="btn btn-default" ng-click="open()">
+            <i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+    </div>
+  </div>
+  </div>
+  
+  <hr />
+  <div>
+	<button class="btn btn-primary" ng-click="exportWorkers()">Download Worker Records</button>&nbsp;&nbsp;Get users who are not students nor parents
+  </div>
+  <hr />
+  <div>
+	<button class="btn btn-primary" ng-click="exportPickups()">Download Pickup Records</button>&nbsp;&nbsp;Use for porting data to another database
+  </div>
+  <hr />
+  
+  <div class="form-group row">
+  <div class="form-inline col-xs-4 col-sm-4 col-md-3 col-lg-3">
+	<button class="btn btn-primary" ng-click="exportAttendance()">Download Attendance</button>
+  </div>
+  <div class="form-inline col-xs-4 col-sm-4 col-md-4 col-lg-4">
+    <div class="col-lg-2">
+      <label class="col-form-label" style="text-align:right; margin:10px 0 0 0; padding-left:0px">From:</label>
+    </div>
+    <div class="input-group col-lg-6">  
+      <input type="text" class="form-control" ng-model="fromDate" 
+    	uib-datepicker-popup="{{format}}" ng-change="fromDateUpdated()"
+        is-open="popup1.opened"/>
+      <span class="input-group-btn">          
+        <button type="button" class="btn btn-default" ng-click="open1()">
+            <i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+    </div>
+  </div>
+  <div class="form-inline col-xs-4 col-sm-4 col-md-4 col-lg-4">
+    <div class="col-lg-2">
+      <label class="col-form-label" style="text-align:right; margin:10px 0 0 0; padding-left:0px">To:</label>
+    </div>
+    <div class="input-group col-lg-6">
+      <input type="text" class="form-control" ng-model="toDate" 
+        uib-datepicker-popup="{{format}}" ng-change="toDateUpdated()"
+        is-open="popup2.opened"/>
+      <span class="input-group-btn">          
+        <button type="button" class="btn btn-default" ng-click="open2()">
+            <i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+    </div>
+  </div>
+  </div>
+
+  <hr />
+  <div>
+	<button class="btn btn-primary" ng-click="exportVideos()">Download Video Records</button>
+  </div>
+  <hr />
+  <div>
+	<button class="btn btn-primary" ng-click="exportWorkbooks()">Download Workbook Records</button>
+  </div>
+  
+  <footer-generic></footer-generic>
+</div>

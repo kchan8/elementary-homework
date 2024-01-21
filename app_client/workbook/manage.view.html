@@ -1,0 +1,41 @@
+<navigation client="vm.client"></navigation>
+<div class="container">
+  <h1>Workbook Manager</h1>
+  <uib-accordion close-others="oneAtATime" >
+    <div uib-accordion-group class="panel-default" ng-repeat="grade in grades" heading="{{grade._id}}-Grade">
+      <div ng-repeat="grade in grades | filter: {_id:grade._id}">
+        <table>
+  		<tr>
+  			<th>Subject</th>
+  			<th>Chapter</th>
+  			<th>Lesson</th>
+  			<th>Description</th>
+  			<th>Pages</th>
+  			<th>Due By</th>
+  			<th>Expire</th>
+  			<th>Change Info</th>
+  			<th>Edit</th>
+  			<th ng-if="isSuperUser(vm.client)">Download</th>
+  			<th ng-if="isSuperUser(vm.client)">Upload</th>
+  			<th><button class="btn btn-xs btn-primary" ng-click="removeWorkbook()">Remove</button></th>
+  		</tr>
+  		<tr ng-repeat="workbook in grade.workbooks">
+  			<td>{{workbook.subject}}</td>
+  			<td>{{workbook.chapter}}</td>
+  			<td>{{workbook.lesson}}</td>
+  			<td>{{workbook.description}}</td>
+  			<td>{{workbook.pages}}</td>
+  			<td>{{workbook.due | date:'M/d/yy' }}</td>
+  			<td>{{workbook.expire | date:'M/d/yy' }}</td>
+  			<td><button type="button" class="btn btn-xs btn-primary" ng-click="updateWorkbook(workbook._id)">Update</button></td>
+  			<td><button type="button" class="btn btn-xs btn-primary" ng-click="editWorkbook(workbook._id)">Edit</button></td>
+  			<td ng-if="isSuperUser(vm.client)"><button type="button" class="btn btn-xs btn-primary" ng-click="downloadWorkbook(workbook._id)">PDF</button></td>
+  			<td ng-if="isSuperUser(vm.client)"><button type="button" class="btn btn-xs btn-primary" ng-click="uploadWorkbook(workbook)">Upload</button></td>
+  			<td><input type="checkbox" ng-model="workbook.select" /></td>
+  		</tr>
+  		</table>
+      </div>
+    </div>
+  </uib-accordion>
+  <footer-generic></footer-generic>
+</div>

@@ -1,0 +1,60 @@
+<navigation client="vm.client"></navigation>
+<div class="container">
+
+  <div class="form-group row">
+    <div class="form-inline col-xs-9 col-sm-4 col-md-3 col-lg-2">
+      <div class="col-xs-2 col-sm-3 col-md-3 col-lg-3">
+      <label class="col-form-label" style="text-align:left; margin:10px 0 0 -18px; padding-left:0px">From:</label>
+      </div>
+      <div class="input-group col-xs-6 col-sm-9 col-md-8 col-lg-9">  
+      <input type="text" class="form-control" ng-model="startDate" 
+    	uib-datepicker-popup="{{format}}" ng-change="startDateUpdated()"
+        is-open="popup1.opened"/>
+      <span class="input-group-btn">          
+        <button type="button" class="btn btn-default" ng-click="open1()">
+            <i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+      </div>
+    </div>
+    <div class="form-inline col-xs-9 col-sm-4 col-md-3 col-lg-2">
+      <div class="col-xs-2 col-sm-3 col-md-3 col-lg-3">
+      <label class="col-form-label" style="text-align:left; margin:10px 0 0 0; padding-left:0px">To:</label>
+      </div>
+      <div class="input-group col-xs-6 col-sm-9 col-md-8 col-lg-9">
+      <input type="text" class="form-control" ng-model="endDate" 
+        uib-datepicker-popup="{{format}}" ng-change="endDateUpdated()"
+        is-open="popup2.opened"/>
+      <span class="input-group-btn">          
+        <button type="button" class="btn btn-default" ng-click="open2()">
+            <i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+      </div>
+    </div>
+    
+  </div>
+  
+  <uib-accordion close-others="oneAtATime" >
+    <div uib-accordion-group class="panel-default" ng-repeat="grade in vm.grades" heading="{{grade._id}}-Grade [{{grade.count}}]">
+      <div ng-repeat="grade in vm.grades | filter: {_id:grade._id}">
+      <table>
+        <th>Name</th>
+        <th ng-repeat="day in displayDays">{{day.weekday}} - {{day.date | date:'M/d'}}</th>
+        
+        <tr ng-repeat="user in grade.users">
+          <td class="Grade-{{grade._id}}">{{user.name}}</td>
+          <td ng-repeat="day in displayDays" valign="top" >
+            {{user.message[day.index]}}
+          </td>
+        </tr>
+      </table>
+      </div>
+    </div>
+  </uib-accordion>
+  
+  <br/>
+  <div style="float:right">
+    <button type="submit" class="btn btn-info" ng-click="update()">Save</button>
+  </div>
+  
+  <footer-generic></footer-generic>
+</div>

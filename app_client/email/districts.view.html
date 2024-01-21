@@ -1,0 +1,41 @@
+<navigation client="vm.client"></navigation>
+<div class="container">
+  <h2>{{vm.header.title}}</h2>
+  <div class="row">
+    <div class="col-sm-1">
+      <div class="btn btn-primary">
+        <input type="checkbox" ng-model="vm.all" ng-change="vm.toggleAll()"/>&nbsp;All
+      </div>
+    </div>
+    <div class="col-sm-8" style="text-align: center; margin: auto">
+      <span ng-repeat="grade in vm.allGrades">
+        <button style="border:1px solid black" class="btn Grade-{{grade}}">{{grade}} ({{ vm.counts[grade] }})</button>
+      </span>
+      <span style="font-weight: bold; position:relative; top: 2px">&nbsp;&nbsp;{{ vm.header.date | date }} ({{ vm.total }} students)</span>
+    </div>
+    <div class="col-sm-3">
+      <div class="btn btn-default pull-right">
+  	    {{ vm.checkTotal }}
+      </div>
+      <input type="submit" class="btn btn-success pull-right" ng-disabled="vm.checkTotal == 0" ng-click="vm.composeMail()" value="Compose Email" />
+    </div>
+  </div>
+  
+  <div ng-repeat="district in vm.districts">
+    <div class="col-sm-4">
+    <div style="border:1px solid black; border-radius: 10px; margin: 10px 0 10px 0; padding: 10px">
+      <div class="btn ">
+        <input type="checkbox" ng-model="vm.select[district._id]" ng-change="vm.toggle(district._id)"/>
+        &nbsp;<span class="name-tag ">{{ district._id }}</span>
+      </div>
+      <br/>
+      <div class="btn btn-default" ng-repeat="user in district.users">
+        <input type="checkbox" ng-model="user.select" ng-change="vm.checkCount(user.select, {{user.select || false}})"/>
+        &nbsp;<span class="name-tag btn Grade-{{user.grade}}">{{ user.name }}</span>
+      </div>
+    </div>
+    </div>
+  </div>
+  
+  <footer-generic></footer-generic>
+</div>

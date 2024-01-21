@@ -1,0 +1,33 @@
+<navigation client="vm.client"></navigation>
+<div class="container">
+  <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 well">
+  <form enctype="multipart/form-data">
+	<h3 class="title">Upload Student File</h3>
+	<div class="form-group">
+	  <input type="file" class="form-control" custom-change="student_file"/>
+	</div>
+	<h3 class="title">Upload Worker File</h3>
+	<div class="form-group">
+	  <input type="file" class="form-control" custom-change="worker_file"/>
+	</div>
+	<h3 class="title">Upload Pickup File</h3>
+	<div class="form-group">
+	  <input type="file" class="form-control" custom-change="pickup_file"/>
+	</div>
+	<h3 class="title">Upload Video Links File</h3>
+	<div class="form-group">
+	  <input type="file" class="form-control" custom-change="video_file"/>
+	</div>
+	<h3 class="title">Upload Workbook Info File</h3>
+	<div class="form-group">
+	  <input type="file" class="form-control" custom-change="workbook_file"/>
+	</div>
+	<div class="form-group">
+	  <button type="reset" class="btn btn-danger">Reset</button>
+	  <button type="submit" class="btn btn-success pull-right" ng-click="upload()">Upload</button>
+	</div>
+	
+  </form>
+  </div>
+  <footer-generic></footer-generic>
+</div>

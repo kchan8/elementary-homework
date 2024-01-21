@@ -1,0 +1,35 @@
+<navigation client="vm.client"></navigation>
+<div class="container">
+  <div><a href="#" ng-click="vm.updatePhone()"><h2>Remove User</h2></a></div>
+  <table>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>School</th>
+      <th>Grade</th>
+      <th>Begin Date</th>
+      <th>Last Date</th>
+      <th>Cell Phone</th>
+      <th>Carrier</th>
+      <th>E-mail</th>
+      <th>Roles</th>
+      <th><button style="float:right" type="submit" class="btn btn-primary" ng-click="vm.removeUser()">Remove</button></th>
+    </tr>
+    <tr ng-repeat="user in vm.users">
+      <td>{{ user.name.firstName }}</td>
+      <td>{{ user.name.lastName }}</td>
+      <td style="width:130px">{{ user.school }}</td>
+      <td class="Grade-{{user.grade}}" style="text-align: center">{{ user.grade }}</td>
+      <td>{{ user.enrollment[0].enroll | date:'M/d/yy' }}</td>
+      <td>{{ user.enrollment[0].last | date:'M/d/yy' }}</td>
+      <td style="width:130px">{{ user.cellPhone }}</td>
+      <td>{{ user.carrier }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.userType.toString() }}</td>
+      <td><input type="checkbox" ng-model="user.select" /></td>
+    </tr>
+  
+  </table>
+
+  <footer-generic></footer-generic>
+</div>

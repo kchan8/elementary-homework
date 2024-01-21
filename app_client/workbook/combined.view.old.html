@@ -1,0 +1,49 @@
+<navigation client="vm.client"></navigation>
+<div class="container ">  
+  <div class="col-xs-12 col-sm-11 col-md-8 col-lg-8">
+  <div ng-class="workbookLocClass">
+    <img src="{{vm.workbook}}" width="612" height="792">
+    <canvas id="homework" ng-class="homeworkLocClass" width="612" height="792"></canvas>
+  </div>
+  <div ng-class="menuLocClass">
+  <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+    <button type="button" class="btn btn-lg btn-primary custom-btn white-background blue" 
+     id="prev" ng-click="getPrev($event)" ng-disabled="vm.page==0">Prev</button>
+    <button type="submit" class="btn btn-lg btn-primary custom-btn green-background black">{{vm.page+1}} of {{vm.totalPages}}</button>
+    <button type="button" class="btn btn-lg btn-primary custom-btn white-background blue"
+     id="next" ng-click="getNext($event)" ng-disabled="vm.totalPages==(vm.page+1)">Next</button>
+    <button type="button" class="btn btn-lg btn-primary custom-btn white-background blue"
+     id="save" ng-click="saveButton($event)" ng-disabled="vm.disableDraw">Save</button>
+    <button type="button" class="btn btn-lg btn-primary custom-btn"
+     id="draw" ng-click="drawButton($event)" ng-class="drawButtonClass" ng-disabled="vm.disableDraw">Draw</button>
+    <button type="button" class="btn btn-lg btn-primary custom-btn white-background blue"
+     id="undo" ng-click="undoButton($event)" ng-disabled="vm.disableDraw">Undo</button>
+    <button type="button" class="btn btn-lg btn-primary custom-btn"
+     id="erase" ng-click="eraseButton($event)" ng-class="eraseButtonClass" ng-disabled="vm.disableDraw">Erase</button>
+    <button type="button" class="btn btn-lg btn-primary custom-btn white-background blue"
+     id="clear" ng-click="clearButton($event)" ng-disabled="vm.disableDraw">ClearAll</button>
+     
+    <button type="button" class="btn btn-lg btn-primary custom-btn" id="black" 
+     ng-if="vm.student" ng-click="colorButton($event)" ng-class="blackButtonClass" ng-disabled="vm.disableDraw">Black</button>
+    <button type="button" class="btn btn-lg btn-primary custom-btn" id="red"
+     ng-if="vm.teacher" ng-click="colorButton($event)" ng-class="redButtonClass" ng-disabled="vm.disableDraw">Red</button>
+    <button type="button" class="btn btn-lg btn-primary custom-btn" id="green"
+     ng-if="vm.teacher" ng-click="colorButton($event)" ng-class="greenButtonClass" ng-disabled="vm.disableDraw">Green</button>
+
+    <br/>
+     
+    <button type="button" class="btn btn-lg btn-primary custom-btn white-background blue"
+     id="switch" ng-click="switchMenu($event)">{{menuLoc}}</button>
+     
+    <button type="submit" class="btn btn-lg btn-primary custom-btn white-background blue" style="position: absolute; top:738px"
+     id="submit" ng-if="vm.student" ng-click="submit($event)" ng-disabled="vm.disableDraw">Submit</button>
+    <button type="submit" class="btn btn-lg btn-primary custom-btn white-background blue" style="position: absolute; top:738px"
+     id="submit" ng-if="vm.teacher" ng-click="submit($event)" ng-disabled="vm.disableDraw">Review</button>
+  </div>
+  </div>
+  
+  </div>
+  <div ng-class="nameTag">
+    <p ng-if="vm.teacher">{{vm.studentName}}<p>
+  </div>
+</div>

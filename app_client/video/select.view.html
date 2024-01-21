@@ -1,0 +1,28 @@
+<navigation client="vm.client"></navigation>
+<div class="container">
+  <h1>Video Links</h1>
+  <table ng-if="videos.length > 0">
+  <tr>
+  <th>Grade</th>
+  <th>Teacher</th>
+  <th>Subject</th>
+  <th>Chapter</th>
+  <th>Lesson</th>
+  <th>Description</th>
+  <th>Expire</th>
+  <th>Link</th>
+  </tr>
+  <tr ng-repeat="video in videos">
+  <td>{{video.grade}}</td>
+  <td>{{video.teacherLastName}}</td>
+  <td>{{video.subject}}</td>
+  <td>{{video.chapter}}</td>
+  <td>{{video.lesson}}</td>
+  <td>{{video.description}}</td>
+  <td>{{video.expire | date:'M/d/yy' }}</td>
+  <td><button type="button" class="btn btn-xs btn-primary" ng-click="watchVideo(video.url)">Link</button></td>
+  </tr>
+  </table>
+  </div>
+  <footer-generic></footer-generic>
+</div>

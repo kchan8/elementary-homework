@@ -1,0 +1,58 @@
+<h1 style="text-align:center">{{vm.client | uppercase}} Class Check-In</h1>
+<br/>  
+<div class="container">
+<form name="form.user" novalidate ng-submit="checkIn()">
+
+  <div role="alert" ng-show="vm.formError" class="alert alert-danger">{{vm.formError}}</div>
+  <div class="row">
+    <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 form-group">
+      <label class="control-label">First name</label>
+      <input type="text" required name="firstname" class="form-control" ng-model="vm.firstName" >
+      <span class="error" ng-show="form.user.firstname.$dirty && form.user.firstname.$error.required">
+        Please enter first name
+      </span>
+    </div>
+
+    <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 form-group">
+      <label class="control-label">1st char of last name</label>
+      <input type="text" required name="lastname" class="form-control" ng-model="vm.lastName" >
+      <span class="error" ng-show="form.user.lastname.$dirty && form.user.lastname.$error.required">
+        Please enter first letter of last name
+      </span>
+    </div>
+    
+    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 form-group">
+      <label class="control-label">Class</label>
+      <select class="form-control" ng-model="vm.class" ng-init="vm.class='math'">
+        <option value="math">Math</option>
+      </select>
+    </div>
+    
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-6">
+      <label class="control-label">Grade</label>    
+      <div class="grades custom-control custom-radio custom-control-inline" style="margin-top:10px">
+        <input type="radio" class="custom-control-input" required name="grade" ng-model="vm.grade" ng-value="'1st'">
+        <label class="custom-control-label">1st</label>
+      
+        <input type="radio" class="custom-control-input" required name="grade" ng-model="vm.grade" ng-value="'2nd'">
+        <label class="custom-control-label">2nd</label>
+      
+        <input type="radio" class="custom-control-input" required name="grade" ng-model="vm.grade" ng-value="'3rd'">
+        <label class="custom-control-label">3rd</label>
+<!--        
+        <input type="radio" class="custom-control-input" name="grade" ng-model="vm.grade" ng-value="'4th'">
+        <label class="custom-control-label">4th</label>
+        
+        <input type="radio" class="custom-control-input" name="grade" ng-model="vm.grade" ng-value="'5th'">
+        <label class="custom-control-label">5th</label>
+         --> 
+      </div>      
+    </div>
+  </div>
+  <br/>   
+  <div style="float:left">
+    <button type="submit" class="btn btn-info">Check-in</button>
+  </div>
+</form>
+  <footer-generic></footer-generic>
+</div>

@@ -1,0 +1,39 @@
+<navigation client="vm.client"></navigation>
+<div class="container">
+  <h1>Student Homework</h1>
+  <p ng-if="homeworks.length == 0">You don't have homework assigned!!</p>
+  <table ng-if="homeworks.length > 0">
+  <tr>
+  <th>Grade</th>
+  <th>Teacher</th>
+  <th>Subject</th>
+  <th>Chapter</th>
+  <th>Lesson</th>
+  <th>Description</th>
+  <th>Pages</th>
+  <th>Due By</th>
+  <th>Online</th>
+  <th>Download</th>
+  <th>Paper Homework</th>
+  <th>Status</th>
+  <th><button style="float:right" class="btn btn-xs btn-primary" ng-click="removeHomework()">Clear</button></th>
+  </tr>
+  <tr ng-repeat="homework in homeworks">
+  <td>{{homework.grade}}</td>
+  <td>{{homework.teacherLastName}}</td>
+  <td>{{homework.subject}}</td>
+  <td>{{homework.chapter}}</td>
+  <td>{{homework.lesson}}</td>
+  <td>{{homework.description}}</td>
+  <td>{{homework.pages}}</td>
+  <td>{{homework.due | date:'M/d/yy' }}</td>
+  <td><button type="button" class="btn btn-xs btn-primary" ng-click="getHomework(homework._id)">Work</button></td>
+  <td><button type="button" class="btn btn-xs btn-primary" ng-click="downloadWorkbook(homework._id)">PDF</button></td>
+  <td><button type="button" class="btn btn-xs btn-primary" ng-click="uploadHomework(homework)">Upload Homework</button></td>
+  <td>{{homework.status}}</td>
+  <td><input type="checkbox" ng-model="homework.select" /></td>
+  </tr>
+  </table>
+  </div>
+  <footer-generic></footer-generic>
+</div>

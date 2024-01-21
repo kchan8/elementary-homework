@@ -1,0 +1,68 @@
+<navigation client="vm.client"></navigation>
+<div class="container">
+  <h2>Edit User</h2>
+  <div class="col-sm-12" style="text-align: center; margin: auto">
+    <span ng-repeat="grade in vm.allGroups">
+      <button style="border:1px solid black" class="btn Grade-{{grade}}">{{grade}} ({{ vm.counts[grade] }})</button>
+    </span>
+    <span style="font-weight: bold; position:relative; top: 2px">&nbsp;&nbsp;{{ vm.header.date | date }}</span>
+  </div>
+  
+  <div ng-repeat="grade in vm.grades | filter: {_id:'TK'}">
+    <div class="col-sm-4">
+    <div style="border:1px solid black; border-radius: 10px; margin: 10px 0 10px 0; padding: 10px">
+      <div style="text-align: center">
+        <span class="patrol-tag">{{ grade._id }}-Grade</span>
+      </div>
+      <br/>
+      <span style="border:1px solid black; margin: 2px; padding: 2px; border-radius: 8px" class="btn Grade-{{grade._id}}" ng-repeat="user in grade.users">
+        <button class="name-tag btn Grade-{{grade._id}}"  ng-click="vm.userinfo(user)"><b>{{ user.name }}</b></button>
+      </span>
+    </div>
+    </div>
+  </div>
+  <div ng-repeat="grade in vm.grades | filter: {_id:'K'}:true">
+    <div class="col-sm-4">
+    <div style="border:1px solid black; border-radius: 10px; margin: 10px 0 10px 0; padding: 10px">
+      <div style="text-align: center">
+        <span class="patrol-tag">{{ grade._id }}-Grade</span>
+      </div>
+      <br/>
+      <span style="border:1px solid black; margin: 2px; padding: 2px; border-radius: 8px" class="btn Grade-{{grade._id}}" ng-repeat="user in grade.users">
+        <button class="name-tag btn Grade-{{grade._id}}"  ng-click="vm.userinfo(user)"><b>{{ user.name}}</b></button>
+      </span>
+    </div>
+    </div>
+  </div>
+  <div ng-repeat="grade in vm.grades | filter: getStudents">
+    <div class="col-sm-4">
+    <div style="border:1px solid black; border-radius: 10px; margin: 10px 0 10px 0; padding: 10px">
+      <div style="text-align: center">
+        <span class="patrol-tag">{{ grade._id }}-Grade</span>
+      </div>
+      <br/>
+      <span style="border:1px solid black; margin: 2px; padding: 2px; border-radius: 8px" class="btn Grade-{{grade._id}}" ng-repeat="user in grade.users">
+        <button class="name-tag btn Grade-{{grade._id}}"  ng-click="vm.userinfo(user)"><b>{{ user.name }}</b></button>
+      </span>
+    </div>
+    </div>
+  </div>
+  
+  <div ng-repeat="grade in vm.grades | filter: getAdults">
+    <div class="col-sm-12">
+    <div style="border:1px solid black; border-radius: 10px; margin: 10px 0 10px 0; padding: 10px">
+      <div style="text-align: center">
+        <span class="patrol-tag">Adults</span>
+      </div>
+      <br/>
+      <span style="border:1px solid black; margin: 2px; padding: 2px; border-radius: 8px" class="btn Grade-{{grade._id}}" ng-repeat="user in grade.users">
+        <button class="name-tag btn" style="background-color:{{user.color}}" ng-click="vm.userinfo(user)"><b>{{ user.name }}</b></button>
+      </span>
+    </div>
+    </div>
+  </div>
+
+  <hr/>
+
+  <footer-generic></footer-generic>
+</div>

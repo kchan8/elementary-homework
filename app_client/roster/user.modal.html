@@ -1,0 +1,19 @@
+<div class="modal-header">
+  <h3 class="modal-title" id="modal-title">{{ user.name.firstName }} {{ user.name.lastName }}</h3>
+</div>
+<div class="modal-body" id="modal-body">
+  <table>
+    <tr><th>Grade</th><td>{{ user.grade }}</td></tr>
+    <tr><th>School</th><td>{{ user.school }}</td></tr>
+    <tr><th>Home Address</th><td>{{ user.homeAddress }}, {{ user.homeCity }}</td></tr>
+    <tr><th>Parent 1</th><td>{{ user.parent1FirstName }} {{ user.parent1LastName }}</td></tr>
+    <tr><th>Parent 1 phone</th><td>{{ user.parent1Phone }}</td></tr>
+    <tr><th>Parent 1 email</th><td>{{ user.parent1Email }}</td></tr>
+    <tr><th>Parent 2</th><td>{{ user.parent2FirstName }} {{ user.parent2LastName }}</td></tr>
+    <tr><th>Parent 2 phone</th><td>{{ user.parent2Phone }}</td></tr>
+    <tr><th>Parent 2 email</th><td>{{ user.parent2Email }}</td></tr>
+  </table>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+</div>

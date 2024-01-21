@@ -1,0 +1,18 @@
+<div class="modal-body" id="modal-body">
+  <div ng-repeat="entry in report">
+    <hr/>{{ entry.driver }}:<br/>
+    <span ng-repeat="task in entry.task">
+      {{ task.date | date:'M/d' }}
+      <div ng-repeat="pickup in task.pickup">
+        {{ pickup.time }}&nbsp;@&nbsp;{{ pickup.school }}:-
+        <span ng-repeat="student in pickup.students">
+          {{ $index != 0 ? ', ' : '' }}{{ student }}
+        </span>
+      </div>
+    </span>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+  <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>

@@ -1,0 +1,135 @@
+<navigation client="vm.client"></navigation>
+<script>
+  var drawing = new SignaturePad(document.getElementById('drawing'), {
+	  minWidth: 1,
+	  maxWidth: 1,
+	  backgroundColor: 'rgba(255, 255, 255, 0)',
+	  penColor: 'rgb(0, 0, 0)'
+	});
+  
+  function screenUpdate(){
+//  var dom_el = document.querySelector('[ng-controller="clientCtrl"]');
+    var ng_el = angular.element("#idForJS");
+	var ng_el_scope = ng_el.scope();
+	var old_sig = ng_el_scope.sig;
+	if (old_sig.data != null){
+		var old_data = "data:image/png;base64," + old_sig.data;
+		drawing.fromDataURL(old_data, {width:612, height:792});
+	}
+  };
+  
+  var canvas = document.getElementById('drawing');
+  var saveButton = document.getElementById('save');
+  var drawButton = document.getElementById('draw');
+  var undoButton = document.getElementById('undo');
+  var eraseButton = document.getElementById('erase');
+  var cancelButton = document.getElementById('clear');
+  var redButton = document.getElementById('red');
+  var blackButton = document.getElementById('black');
+
+  saveButton.addEventListener('click', function (event) {
+    var data = drawing.toDataURL('image/png'); // jpeg not work
+    // Send data to server instead...
+    var scope = angular.element(document.getElementById('idForJS')).scope();
+    scope.sendData(data);
+  });
+  
+  drawButton.addEventListener('click', function () {
+	var ctx = canvas.getContext('2d');
+	ctx.globalCompositeOperation = 'source-over'; // default value
+	drawing.minWidth = 1;
+	drawing.maxWidth = 1;
+	$('#draw').addClass('blue-background').removeClass('white-background')
+	$('#draw').addClass('white').removeClass('blue')
+	$('#erase').addClass('white-background').removeClass('blue-background')
+	$('#erase').addClass('blue').removeClass('white')
+  });
+
+  undoButton.addEventListener('click', function () {
+	var data = drawing.toData();
+	if (data) {
+		data.pop(); // remove the last dot or line
+	    drawing.fromData(data);
+	 }
+  });
+
+  eraseButton.addEventListener('click', function (event) {
+	var ctx = canvas.getContext('2d');
+	ctx.globalCompositeOperation = 'destination-out';
+	drawing.maxWidth = 10;
+	$('#draw').addClass('white-background').removeClass('blue-background')
+	$('#draw').addClass('blue').removeClass('white')
+	$('#erase').addClass('blue-background').removeClass('white-background')
+	$('#erase').addClass('white').removeClass('blue')
+  });
+
+  cancelButton.addEventListener('click', function (event) {
+    drawing.clear();
+  });
+  redButton.addEventListener('click', function (event) {
+	var ctx = canvas.getContext('2d');
+	ctx.globalCompositeOperation = 'source-over'; // default value
+	drawing.minWidth = 1;
+	drawing.maxWidth = 1;
+	drawing.penColor = "rgb(255, 0, 0)";
+	$('#red').addClass('red-background').removeClass('white-background')
+	$('#red').addClass('white').removeClass('red')
+	$('#black').addClass('white-background').removeClass('black-background')
+	$('#black').addClass('black').removeClass('white')
+	$('#draw').addClass('blue-background').removeClass('white-background')
+	$('#draw').addClass('white').removeClass('blue')
+	$('#erase').addClass('white-background').removeClass('blue-background')
+	$('#erase').addClass('blue').removeClass('white')
+  });
+  blackButton.addEventListener('click', function (event) {
+	var ctx = canvas.getContext('2d');
+	ctx.globalCompositeOperation = 'source-over'; // default value
+	drawing.minWidth = 1;
+	drawing.maxWidth = 1;
+	drawing.penColor = "rgb(0, 0, 0)";
+	$('#red').addClass('white-background').removeClass('red-background')
+	$('#red').addClass('red').removeClass('white')
+	$('#black').addClass('black-background').removeClass('white-background')
+	$('#black').addClass('white').removeClass('black')
+	$('#draw').addClass('blue-background').removeClass('white-background')
+	$('#draw').addClass('white').removeClass('blue')
+	$('#erase').addClass('white-background').removeClass('blue-background')
+	$('#erase').addClass('blue').removeClass('white')
+  });
+  
+  var toggleBtnGroup = function(){
+	var windowWidth = $(window).width();
+	if (windowWidth > 768){
+	  $('#buttons').addClass('btn-group-vertical').removeClass('btn-group');
+	} else {
+	  $('#buttons').addClass('btn-group').removeClass('btn-group-vertical');	
+	}
+  }
+  toggleBtnGroup();
+  window.addEventListener('resize', toggleBtnGroup);
+</script>
+
+<div class="container ">  
+  <div class="col-xs-12 col-sm-11 col-md-8 col-lg-7">
+  <div class="wrapper">
+    <img src="{{vm.workbook}}" width="612" height="792">
+    <canvas id="drawing" class="drawing" width="612" height="792"></canvas>
+  </div>
+  <div class="drawmenu">
+  <div id="buttons">
+    <button type="button" class="btn btn-lg btn-primary" id="prev">Prev</button>
+    <br/>
+    <button type="button" class="btn btn-lg btn-primary white-background blue" id="save">Save</button>
+    <button type="button" class="btn btn-lg btn-primary blue-background white" id="draw">Draw</button>
+    <button type="button" class="btn btn-lg btn-primary white-background blue" id="undo">Undo</button>
+    <button type="button" class="btn btn-lg btn-primary white-background blue" id="erase">Erase</button>
+    <button type="button" class="btn btn-lg btn-primary white-background blue" id="clear">Clear</button>
+    <button type="button" class="btn btn-lg btn-primary white-background red" id="red">Red</button>
+    <button type="button" class="btn btn-lg btn-primary black-background white" id="black">Black</button>
+    <br/>
+    <button type="button" class="btn btn-lg btn-primary" id="next">Next</button>
+  </div>
+  </div>
+  </div>
+  <footer-generic></footer-generic>
+</div>

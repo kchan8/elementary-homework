@@ -1,0 +1,43 @@
+<navigation client="vm.client"></navigation>
+<div class="container">
+  <h1>Homework Review</h1>
+  <uib-accordion close-others="oneAtATime" >
+    <div uib-accordion-group class="panel-default" ng-repeat="grade in grades" heading="{{grade._id}}-Grade">
+      <div ng-repeat="grade in grades | filter: {_id:grade._id}">
+      
+      <table >
+      <tr>
+        <th>Grade</th>
+        <th>Student</th>
+        <th>Subject</th>
+        <th>Chapter</th>
+        <th>Lesson</th>
+        <th>Description</th>
+        <th>Due By</th>
+        <th>Expire</th>
+        <th>Review</th>
+        <th>Status</th>
+        <th>Unlock Student</th>
+        <th><button style="float:right" class="btn btn-xs btn-primary" ng-click="removeHomework()">Remove</button></th>
+      </tr>
+      <tr ng-repeat="homework in grade.homeworks">
+        <td>{{homework.grade}}</td>
+        <td>{{homework.firstName}} {{homework.lastName}}</td>
+        <td>{{homework.subject}}</td>
+        <td>{{homework.chapter}}</td>
+        <td>{{homework.lesson}}</td>
+        <td>{{homework.description}}</td>
+        <td>{{homework.due | date:'M/d/yy' }}</td>
+        <td>{{homework.expire | date:'M/d/yy' }}</td>
+        <td><button type="button" class="btn btn-xs btn-primary" ng-click="getHomework(homework._id)">Review</button></td>
+        <td>{{homework.status}}</td>
+        <td><button type="button" class="btn btn-xs btn-primary" ng-click="unlockHomework(homework._id)">Set to ASSIGN</button></td>
+        <td><input type="checkbox" ng-model="homework.select" /></td>
+      </tr>
+      </table>
+      </div>
+    </div>
+  </uib-accordion>
+      
+  <footer-generic></footer-generic>
+</div>

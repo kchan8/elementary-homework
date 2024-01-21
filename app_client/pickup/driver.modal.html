@@ -1,0 +1,22 @@
+<div class="modal-body" id="modal-body">
+  <p>Click on driver or ALL before send.</p>
+  <span ng-repeat="driver in drivers" >
+    <button class="btn" style="background-color:{{driver.color}}; margin: 2px;" ng-click="getReport(driver.name)">{{ driver.name }}</button>
+  </span>
+  <div ng-repeat="entry in report">
+    <hr/><b>{{ entry.driver }}</b>:<br/>
+    <span ng-repeat="task in entry.task">
+      {{ task.date | date:'M/d' }}
+      <div ng-repeat="pickup in task.pickup">
+        {{ pickup.time }}&nbsp;@&nbsp;{{ pickup.school }}:-
+        <span ng-repeat="student in pickup.students">
+          {{ $index != 0 ? ', ' : '' }}{{ student }}
+        </span>
+      </div>
+    </span>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" type="button" ng-click="send(report)" ng-disabed="sendEnabled">Send</button>
+  <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>

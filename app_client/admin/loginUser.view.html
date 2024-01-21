@@ -1,0 +1,10 @@
+<navigation client="vm.client"></navigation>
+<div class="container">
+  <h2>Login Registered User</h2>
+    <div style="text-align: center">
+      <span style="border:1px solid black; margin: 2px; padding: 2px; border-radius: 8px" class="btn" ng-repeat="user in vm.users">
+        <button class="name-tag btn"  ng-click="vm.hackin(user.username)"><b>{{ user.name.firstName }} {{ user.name.lastName }}</b></button>
+      </span>
+    </div>
+  <footer-generic></footer-generic>
+</div>
